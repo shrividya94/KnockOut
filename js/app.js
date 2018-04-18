@@ -9,7 +9,7 @@ var ViewModel= function(){
     this.name = ko.observable('kitty');
     this.imgSrc = ko.observable('img/kitty.jpg');
     this.imgAttribution = ko.observable('http://www.readersdigest.ca/wp-content/uploads/2011/01/4-ways-cheer-up-depressed-cat.jpg');
-   
+   this.nickNames=['Mr.Kittty','kitkit','kittuu','kitkittt'];
     this.incrementCounter= function() {
         this.clickCount(this.clickCount()+1);
       this.findLevel();
@@ -28,5 +28,7 @@ var ViewModel= function(){
         }
         
     };
+    
+    
 };
 ko.applyBindings(new ViewModel());
