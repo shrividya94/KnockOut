@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var Cat = function(){
-     this.clickCount = ko.observable(0);
-     this.levelCat = ko.observable('infant');
-    this.name = ko.observable('kitty');
-    this.imgSrc = ko.observable('img/kitty.jpg');
-    this.imgAttribution = ko.observable('http://www.readersdigest.ca/wp-content/uploads/2011/01/4-ways-cheer-up-depressed-cat.jpg');
-   this.nickNames=['Mr.Kittty','kitkit','kittuu','kitkittt'];
+var Cat = function(data){
+     this.clickCount = ko.observable(data.clickCount);
+     this.levelCat = ko.observable(data.levelCat);
+    this.name = ko.observable(data.name);
+    this.imgSrc = ko.observable(data.imgSrc);
+    this.imgAttribution = ko.observable(data.imgAttribution);
+   this.nickNames=ko.observableArray(data.nickNames);
     this.findLevel= function(){
          
         if(this.clickCount()>=10)
@@ -27,7 +27,14 @@ var Cat = function(){
 }
 var ViewModel= function(){
     var self=this;
-    this.currentCat = ko.observable(new Cat());
+    this.currentCat = ko.observable( new Cat({
+       clickCount:0,
+       levelCat:'infant',
+       name:'kitty',
+       imgSrc:'img/kitty.jpg',
+       imgAttribution:'http://www.readersdigest.ca/wp-content/uploads/2011/01/4-ways-cheer-up-depressed-cat.jpg',
+       nickNames:['Mr.Kittty','kitkit','kittuu','kitkittt']
+    }) );
     this.incrementCounter= function() {
         self.currentCat().clickCount(self.currentCat().clickCount()+1);
       self.currentCat().findLevel();
