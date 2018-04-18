@@ -14,14 +14,14 @@ and open the template in the editor.s
    
     <div>
 
-        <h2 data-bind="text: name"></h2>
-        <div data-bind="text: levelCat"></div>
-        <div data-bind="text: clickCount"></div>
-        <img src="" alt="cute cat" data-bind="click: incrementCounter(),attr: {src:imgSrc}"/>
+        <h2 data-bind="text: currentCat().name"></h2>
+        <div data-bind="text: currentCat().levelCat"></div>
+        <div data-bind="text: currentCat().clickCount"></div>
+        <img src="" alt="cute cat" data-bind="click: incrementCounter(),attr: {src:currentCat().imgSrc}"/>
         <div> <label><b>NickNames</b></label>
         
                 <ul>
-                     <!-- ko foreach: nickNames -->
+                     <!-- ko foreach: currentCat().nickNames -->
                      <li>
                         <span data-bind="text: $data"> </span>
                       </li>
