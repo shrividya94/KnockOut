@@ -84,14 +84,14 @@ var ViewModel= function(){
     };
    this.setCurrentCat = function(){
        //window.alert(this.name());
-       var clickedCat=this.name();
-       self.catList().forEach(function(cat){
+      // var clickedCat=this.name();
+     //  self.catList().forEach(function(cat){
          //  window.alert(cat.name());
-            if(clickedCat===cat.name()){
-                window.alert("you clicked "+clickedCat);
-                 self.currentCat(cat);
-            }
-        });
+          //  if(clickedCat===cat.name()){
+               window.alert("you clicked "+this.name());
+                 self.currentCat(this);
+          //  }
+       // });
                
            
        
