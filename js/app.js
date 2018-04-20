@@ -3,6 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var initialCats = [
+                  {
+                    name:'Tinku',
+                    imgSrc:'img/one.jpg',
+                    levelCat:'infant',
+                    clickCount:0,
+                    imgAttribution : 'https://www.flickr.com/photos/bigtallguy/434164568',
+                    nickNames:['tinkii']
+                  },
+                   {
+                    name:"Pinku",
+                    imgSrc:'img/two.jpg',
+                     levelCat:'infant',
+                    clickCount:0,
+                    imgAttribution : 'https://www.flickr.com/photos/xshamx/4154543904',
+                    nickNames:['pipi']
+                  },
+                   {
+                    name:"Rinku",
+                    imgSrc:'img/three.jpg',
+                     levelCat:'infant',
+                    clickCount:0,
+                     imgAttribution : 'https://www.flickr.com/photos/kpjas/22252709',
+                     nickNames:['kitkat']
+                
+                  },
+                   {
+                    name:"Kitty",
+                    imgSrc:'img/kitty.jpg',
+                     levelCat:'infant',
+                    clickCount:0,
+                    imgAttribution : 'https://www.flickr.com/photos/malfet/1413379559',
+                     nickNames:['Mr.Kittty','kitkit','kittuu','kitkittt']
+                   
+                  },
+                   {
+                    name:"Nini",
+                    imgSrc:'img/cat.jpg',
+                     levelCat:'infant',
+                    clickCount:0,
+                    imgAttribution : 'https://www.flickr.com/photos/onesharp/9648464288',
+                    nickNames:['ninnuu']
+                  }
+              ];
+              
 var Cat = function(data){
      this.clickCount = ko.observable(data.clickCount);
      this.levelCat = ko.observable(data.levelCat);
@@ -24,22 +69,34 @@ var Cat = function(data){
         }
         
     };
-}
+};
+
 var ViewModel= function(){
     var self=this;
-    this.currentCat = ko.observable( new Cat({
-       clickCount:0,
-       levelCat:'infant',
-       name:'kitty',
-       imgSrc:'img/kitty.jpg',
-       imgAttribution:'http://www.readersdigest.ca/wp-content/uploads/2011/01/4-ways-cheer-up-depressed-cat.jpg',
-       nickNames:['Mr.Kittty','kitkit','kittuu','kitkittt']
-    }) );
-    this.incrementCounter= function() {
+    this.catList = ko.observableArray();
+    initialCats.forEach(function(catItem){
+        self.catList.push(new Cat(catItem));
+    });
+    this.currentCat= ko.observable();
+    this.incrementCounter = function() {
         self.currentCat().clickCount(self.currentCat().clickCount()+1);
       self.currentCat().findLevel();
     };
-   
+   this.setCurrentCat = function(){
+       //window.alert(this.name());
+       var clickedCat=this.name();
+       self.catList().forEach(function(cat){
+         //  window.alert(cat.name());
+            if(clickedCat===cat.name()){
+                window.alert("you clicked "+clickedCat);
+                 self.currentCat(cat);
+            }
+        });
+               
+           
+       
+     
+   };
     
     
 };
